@@ -10,10 +10,9 @@ const bM =  Number(parseFloat(dados[3]))
 let totalSeg = Math.abs(((aH * 60) + aM ) - ((bH * 60) + bM))
 let horas = Math.floor(totalSeg/60) 
 let minutos = Math.floor(totalSeg%60)
-
 if(totalSeg == 0){
 
-    console.log(`O JOGO DUROU ${24} HORA(S) E ${minutos} MINUTO(S)`) 
+    console.log(`O JOGO DUROU 24 HORA(S) E 0 MINUTO(S)`) 
 }else {
 
     console.log(`O JOGO DUROU ${horas} HORA(S) E ${minutos} MINUTO(S)`)
