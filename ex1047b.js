@@ -3,24 +3,47 @@ var lines = input.split('\n');
 
 
 const dados = lines[0].split(' ')
-const hora_inical =  Number(parseFloat(dados[0]))
-const minuto_inicial =  Number(parseFloat(dados[1]))
-const hora_final =  Number(parseFloat(dados[2]))
-const minuto_final=  Number(parseFloat(dados[3]))
+let h1 =  parseFloat(dados[0])
+let m1 =  parseFloat(dados[1])
+let h2 =  parseFloat(dados[2])
+let m2 =  parseFloat(dados[3])
+var total_hour, total_minute;
 
-hora_total = hora_final - hora_inical
-minuto_total = minuto_final - minuto_inicial
+if ((h1 == h2) && (m1 == m2)){
+    total_hour = (24 - h1) + h2;
+    total_minute = m2 - m1; 
+}
+else if ((h1 == h2) && (m1 < m2)){
+    total_hour = h2 - h1;
+    total_minute = m2 - m1; 
+}
+else if ((h1 == h2) && (m1 > m2)){
+    total_hour = (24 - h1) + h2 - 1;
+    total_minute = (60 - m1) + m2; 
+}
+else if ((h1 < h2) && (m1 == m2)){
+    total_hour = h2 - h1;
+    total_minute = m2 - m1;
+}
+else if ((h1 > h2) && (m1 == m2)){
+    total_hour = (24 - h1) + h2;
+    total_minute = m2 - m1;
+}
+else if ((h1 < h2) && (m1 < m2)){
+    total_hour = h2 - h1;
+    total_minute = m2 - m1;
+}
+else if ((h1 < h2) && (m1 > m2)){
+    total_hour = h2 - h1 - 1;
+    total_minute = (60 - m1) + m2;
+}
+else if ((h1 > h2) && (m1 < m2)){
+    total_hour = (24 - h1) + h2 - 1;
+    total_minute = m2 - m1;
+}
+else{
+    total_hour = (24 - h1) + h2 - 1;
+    total_minute = (60 - m1) + m2;
+}
 
-if(hora_total < 0){
-    hora_total += 24
-}
-if(minuto_total < 0){
-    minuto_total += 60
-    hora_total -= 1
-}
-if(minuto_total == 0 && hora_total == 0){
-    console.log(`O JOGO DUROU 24 HORA(S) E 0 MINUTO(S)`)
-}else{
-    console.log(`O JOGO DUROU ${hora_total} HORA(S) E ${minuto_total} MINUTO(S)`)
-}
-
+console.log(`O JOGO DUROU ${total_hour} HORA(S) E ${total_minute} MINUTO(S)`)
